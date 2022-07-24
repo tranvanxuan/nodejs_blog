@@ -1,4 +1,4 @@
-const path = require('path')
+const path = require('path');
 const express = require('express');
 const morgan = require('morgan');
 const handlebars = require('express-handlebars');
@@ -6,11 +6,13 @@ const handlebars = require('express-handlebars');
 const app = express();
 const port = 3000;
 
+app.use(express.static(path.join(__dirname, 'public')));
+
 //http logger
 app.use(morgan('combined'))
 
 //template engine
-app.engine('hbs', handlebars({
+app.engine('hbs', handlebars.engine({
   extname: '.hbs'
 }));
 app.set('view engine', 'hbs');
