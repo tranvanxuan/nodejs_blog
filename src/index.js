@@ -1,6 +1,7 @@
 const path = require('path');
 const express = require('express');
 const morgan = require('morgan');
+var methodOverride = require('method-override');
 const handlebars = require('express-handlebars');
 
 const route = require('./routes/index');
@@ -22,6 +23,9 @@ app.use(
 );
 //client gui len
 app.use(express.json());
+
+// override with POST having ?_method=DELETE
+app.use(methodOverride('_method'));
 
 //http logger
 app.use(morgan('combined'));
