@@ -12,7 +12,7 @@
         </div>
 
         <select class="form-select form-select-sm checkbox-select-all-options" name="action" required>
-          <option value="">All</option>-- hành động --</option>
+          <option value="">-- hành động --</option>
           <option value="delete">Xoá</option>
         </select>
 
@@ -24,9 +24,18 @@
         <thead>
             <tr>
                 <th scope="col" colspan="2">#</th>
-                <th scope="col">Tên khoá học</th>
-                <th scope="col">Trình độ</th>
-                <th scope="col" colspan="2">Thời gian tạo</th>
+                <th scope="col" class=".iconic-elevator-md">
+                  Tên khoá học
+                  {{{sortable 'name' _sort}}}
+                </th>
+                <th scope="col">
+                  Trình độ
+                  {{{sortable 'level' _sort}}}
+                </th>
+                <th scope="col" colspan="2">
+                  Thời gian tạo
+                  {{{sortable 'createdAt' _sort}}}
+                </th>
             </tr>
         </thead>
         <tbody>

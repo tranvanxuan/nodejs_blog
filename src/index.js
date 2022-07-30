@@ -3,6 +3,7 @@ const express = require('express');
 const morgan = require('morgan');
 var methodOverride = require('method-override');
 const handlebars = require('express-handlebars');
+const SortMiddleware = require('./app/middlewares/sortMiddlewares');
 
 const route = require('./routes/index');
 const db = require('./config/db');
@@ -27,6 +28,9 @@ app.use(express.json());
 // override with POST having ?_method=DELETE
 app.use(methodOverride('_method'));
 
+//Custom middleware
+app.use(SortMiddleware);
+
 //http logger
 app.use(morgan('combined'));
 
@@ -35,9 +39,7 @@ app.engine(
     'hbs',
     handlebars.engine({
         extname: '.hbs',
-        helpers: {
-            sum: (a, b) => a + b,
-        },
+        helpers: require('./helpers/handlebars'),
     }),
 );
 app.set('view engine', 'hbs');
